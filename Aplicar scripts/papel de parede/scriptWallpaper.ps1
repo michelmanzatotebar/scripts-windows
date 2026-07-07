@@ -62,4 +62,5 @@ if(!$imagem)
 
 Write-Host ""
 Write-Host "Papel de parede aplicado com sucesso."
+Write-Host "Reinicie o computador para aplicar o novo padrão."
 Pause

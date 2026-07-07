@@ -118,12 +118,6 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Backup\Client" /v DisableBacku
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Backup\Client" /v DisableBackupLauncher /t REG_DWORD /d 1 /f
 
 :: ==========================================
-:: DEFINIR PAPEL DE PAREDE PADRAO
-:: ==========================================
-echo Executando script de Definir papel de parede padrao...
-timeout /t 2 >nul
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0\papel de parede\scriptWallpaper.ps1"
-:: ==========================================
 :: FIM
 :: ==========================================
 echo.
