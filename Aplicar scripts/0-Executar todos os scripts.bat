@@ -15,14 +15,6 @@ echo Executando script de Bloqueio de wifi visitantes...
 timeout /t 2 >nul
 netsh wlan add filter permission=block ssid="Grupo_ABV_Visitantes" networktype=infrastructure
 
-
-:: ==========================================
-:: 2 - DEFINIR PAPEL DE PAREDE PADRAO
-:: ==========================================
-echo Executando script de Definir papel de parede padrao...
-timeout /t 2 >nul
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0\papel de parede\scriptWallpaper.ps1"
-
 :: ==========================================
 :: 3 - BLOQUEAR MICROSOFT STORE / ONEDRIVE
 :: ==========================================
@@ -125,6 +117,12 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\CscService" /v "Start" /t REG_DW
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Backup\Client" /v DisableBackupUI /t REG_DWORD /d 1 /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Backup\Client" /v DisableBackupLauncher /t REG_DWORD /d 1 /f
 
+:: ==========================================
+:: DEFINIR PAPEL DE PAREDE PADRAO
+:: ==========================================
+echo Executando script de Definir papel de parede padrao...
+timeout /t 2 >nul
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0\papel de parede\scriptWallpaper.ps1"
 :: ==========================================
 :: FIM
 :: ==========================================

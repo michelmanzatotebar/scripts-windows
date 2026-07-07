@@ -27,7 +27,7 @@ Write-Host "5 - VILUVI"
 Write-Host "0 - Sair"
 Write-Host ""
 
-$opcao = Read-Host "Escolha uma opcao"
+$opcao = Read-Host "Escolha o numero da opcao"
 
 switch ($opcao)
 {
@@ -56,10 +56,6 @@ if(!$imagem)
     exit
 }
 
-# Aplica o tema padrão do Windows
-Start-Process "$env:windir\Resources\Themes\aero.theme"
-
-Start-Sleep -Seconds 2
 
 # Aplica o papel de parede escolhido
 [Wallpaper]::SystemParametersInfo(20,0,$imagem.FullName,3)
