@@ -1,0 +1,43 @@
+
+# Logs
+*.log
+
+# Temporários
+*.tmp
+*.bak
+
+# Windows
+Thumbs.db
+Desktop.ini
+*.db
+*.cache
+
+# VS Code
+.vscode/
+
+# Arquivos de configuração locais
+*.user
+*.local
+
+# Certificados
+*.pfx
+*.pem
+*.key
+
+# Saídas
+Output/
+Logs/
+Temp/
+Backup/
+
+# Arquivos de configuração
+*.ini
+
+# Imagens
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.webp
+*.ico

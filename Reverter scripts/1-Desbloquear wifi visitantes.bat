@@ -1,0 +1,1 @@
+netsh wlan delete filter permission=block ssid="Grupo_ABV_Visitantes" networktype=infrastructure
