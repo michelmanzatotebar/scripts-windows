@@ -11,4 +11,4 @@ if %errorlevel% neq 0 (
     exit
 )
 
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0\papel de parede\scriptWallpaper.ps1"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0\wallpaper\scriptWallpaper.ps1"

@@ -11,14 +11,28 @@ if %errorlevel% neq 0 (
 :: ==========================================
 :: 1 - BLOQUEAR WIFI VISITANTES
 :: ==========================================
+echo.
 echo Executando script de Bloqueio de wifi visitantes...
+echo.
 timeout /t 2 >nul
 netsh wlan add filter permission=block ssid="Grupo_ABV_Visitantes" networktype=infrastructure
+@echo off
+
+:: ==========================================
+:: 2 - APLICAR PAPEL DE PAREDE
+:: ==========================================
+echo.
+echo Executando script de papel de parede...
+echo.
+timeout /t 2 >nul
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0\wallpaper\scriptWallpaper.ps1"
 
 :: ==========================================
 :: 3 - BLOQUEAR MICROSOFT STORE / ONEDRIVE
 :: ==========================================
+echo.
 echo Executando script de Bloquear Microsoft store...
+echo.
 timeout /t 2 >nul
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v NoConnectedUser /t REG_DWORD /d 3 /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v NoConnectedUser /t REG_DWORD /d 3 /f
@@ -32,7 +46,9 @@ taskkill /f /im OneDrive.exe >nul 2>&1
 :: ==========================================
 :: 4 - BLOQUEIO TELA PERSONALIZACAO E CONTAS
 :: ==========================================
+echo.
 echo Executando script de Bloqueio de tela personalizacao e contas...
+echo.
 timeout /t 2 >nul
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\ActiveDesktop" /v NoChangingWallPaper /t REG_DWORD /d 1 /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoThemesTab /t REG_DWORD /d 1 /f
@@ -46,7 +62,9 @@ taskkill /f /im SystemSettings.exe >nul 2>&1
 :: ==========================================
 :: 5 - CONTROLE DE SENHA (USER LOCAL)
 :: ==========================================
+echo.
 echo Executando script de Controle de senhas...
+echo.
 timeout /t 2 >nul
 
 echo.
@@ -97,7 +115,9 @@ reg add "HKCR\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /v Syste
 :: ==========================================
 :: 6 - DESATIVAR OFFLINE FILES + ONEDRIVE
 :: ==========================================
+echo.
 echo Executando script de bloqueio de arquivos offline...
+echo.
 timeout /t 2 >nul
 taskkill /f /im OneDrive.exe 2>nul
 
@@ -123,4 +143,5 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Backup\Client" /v DisableBacku
 echo.
 echo Todos os scripts aplicados com sucesso.
 echo Reinicie a maquina para aplicar as alteracoes.
+echo.
 pause
