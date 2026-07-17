@@ -14,7 +14,6 @@ if (-not (Test-Path $InstallerPath)) {
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $InfPath = Join-Path $ScriptDir "UltraVNC.inf"
 $ConfigPath = Join-Path $ScriptDir "ultravnc.ini"
-$UltraVNCPath = "C:\Program Files\UltraVNC"
 
 if (-not (Test-Path $InfPath)) {
     Write-Host "ERRO: UltraVNC.inf nao encontrado"
@@ -48,6 +47,46 @@ catch {
 
 Start-Sleep -Seconds 5
 
+# --- Localiza pasta do UltraVNC dinamicamente ---
+Write-Host "Localizando pasta do UltraVNC..."
+
+$UltraVNCPath = $null
+
+$CandidatePaths = @(
+    "C:\Program Files\UltraVNC",
+    "C:\Program Files (x86)\UltraVNC"
+)
+
+foreach ($path in $CandidatePaths) {
+    if (Test-Path "$path\winvnc.exe") {
+        $UltraVNCPath = $path
+        break
+    }
+}
+
+if (-not $UltraVNCPath) {
+    Write-Host "Caminho padrao nao encontrado, buscando dinamicamente..."
+
+    $found = Get-ChildItem `
+        -Path "C:\Program Files", "C:\Program Files (x86)" `
+        -Filter "winvnc.exe" `
+        -Recurse `
+        -ErrorAction SilentlyContinue |
+        Select-Object -First 1
+
+    if ($found) {
+        $UltraVNCPath = $found.DirectoryName
+    }
+}
+
+if (-not $UltraVNCPath) {
+    Write-Host "ERRO: Pasta do UltraVNC nao encontrada apos instalacao"
+    exit 1
+}
+
+Write-Host "OK - UltraVNC encontrado em: $UltraVNCPath"
+
+# --- Aplica configuracao ---
 Write-Host "Aplicando configuracao..."
 
 if (Test-Path $ConfigPath) {
@@ -155,3 +194,4 @@ Format-Table -AutoSize
 
 Write-Host ""
 Write-Host "Instalacao finalizada."
+Write-Host "Pasta utilizada: $UltraVNCPath"
